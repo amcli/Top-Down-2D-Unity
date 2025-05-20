@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         {
             //reset the timer for stamina regen upon sprinting
             staminaRegenTimer = 0;
-            Debug.Log("Draining Stamina");
+            //Debug.Log("Draining Stamina");
 
             //start draining stamina
             currStamina -= sprintCost * Time.deltaTime;
