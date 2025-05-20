@@ -13,12 +13,6 @@ public class Healthbar : MonoBehaviour
         sl = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetMaxHealth(float hp)
     {
         sl.maxValue = hp;
