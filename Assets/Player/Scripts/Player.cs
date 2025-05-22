@@ -133,17 +133,17 @@ public class Player : MonoBehaviour
         sprinting = sprintInput > 0 ? true : false;
     }
 
-    public void Shoot(InputAction.CallbackContext c)
-    {
-        var shootInput = c.ReadValue<float>();
-        Debug.Log(shootInput);
-        Debug.Log("Shot a bullet");
+    //public void Shoot(InputAction.CallbackContext c)
+    //{
+    //    var shootInput = c.ReadValue<float>();
+    //    Debug.Log(shootInput);
+    //    Debug.Log("Shot a bullet");
 
 
-        //logic:
-        //changes the vector of projectile entity and then entity is cloned
-        //the cloned entity will have vector and will therefor move 
-    }
+    //    //logic:
+    //    //changes the vector of projectile entity and then entity is cloned
+    //    //the cloned entity will have vector and will therefor move 
+    //}
 
 
 

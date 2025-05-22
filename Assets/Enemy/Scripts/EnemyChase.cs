@@ -28,12 +28,16 @@ public class EnemyChase : MonoBehaviour
         Vector2 dir = p.transform.position - transform.position;
         dir.Normalize();
 
-        //enemy rotate toward player angle calculation
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if(distance < 15)
+        {
+            //enemy rotate toward player angle calculation
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
 
-        transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, speed * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
