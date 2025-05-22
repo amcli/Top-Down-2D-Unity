@@ -147,12 +147,7 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-
-    //misc
+    //health related
     public void TakeDamage(float damage)
     {
         currHP -= damage;

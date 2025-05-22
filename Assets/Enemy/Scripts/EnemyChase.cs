@@ -11,6 +11,7 @@ using Vector3 = UnityEngine.Vector3;
 public class EnemyChase : MonoBehaviour
 {
     public GameObject p;
+    public Player pl;
     private float speed = 2.0f;
     private float distance;
 
@@ -33,5 +34,15 @@ public class EnemyChase : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, speed * Time.deltaTime);
         transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collided w/ Player");
+            pl.TakeDamage(10);
+        }
+
     }
 }
