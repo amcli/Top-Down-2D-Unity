@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private float speed = 7.5f;
     private float sprintSpeed = 1.0f;
-    private float sprintCost = 35.0f;
+    private float sprintCost = 30.0f;
     public bool sprinting = false;
     public bool moving = false;
     public bool canSprint = true;

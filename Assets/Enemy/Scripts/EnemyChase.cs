@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Threading;
 using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -12,8 +13,11 @@ public class EnemyChase : MonoBehaviour
 {
     public GameObject p;
     public Player pl;
-    private float speed = 2.0f;
+    private float speed = 4.0f;
     private float distance;
+    private float accelTime = 3.5f;
+    private float multiplier;
+    private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +32,26 @@ public class EnemyChase : MonoBehaviour
         Vector2 dir = p.transform.position - transform.position;
         dir.Normalize();
 
-        if(distance < 15)
+        if(distance < 20)
         {
+            timer += Time.deltaTime;
             //enemy rotate toward player angle calculation
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            multiplier = timer >= accelTime ? 2.0f : 1f;
+            //Debug.Log(multiplier);
 
 
-            transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, speed * Time.deltaTime);
+
+            //move enemy toward player
+            transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, speed * multiplier * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        }
+
+        else { 
+            timer = 0f; 
+            multiplier = 1f;
+            Debug.Log(timer);
+            Debug.Log(multiplier);
         }
 
     }

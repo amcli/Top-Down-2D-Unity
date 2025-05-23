@@ -10,7 +10,7 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
 
     private Rigidbody2D rb;
-    private float force = 5.0f;
+    private float force = 10.0f;
 
     // Start is called before the first frame update
     void Start()
