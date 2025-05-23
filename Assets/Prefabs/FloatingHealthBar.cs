@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Healthbar : MonoBehaviour
+public class FloatingHealthBar : MonoBehaviour
 {
+    // Start is called before the first frame update
     public Slider sl;
 
     // Start is called before the first frame update
@@ -23,6 +24,4 @@ public class Healthbar : MonoBehaviour
     {
         sl.value = hp;
     }
-
 }
-

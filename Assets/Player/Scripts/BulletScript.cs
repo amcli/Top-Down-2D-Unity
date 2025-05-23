@@ -11,9 +11,10 @@ public class BulletScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private float force = 10.0f;
+    private float bulletDmg = 10.0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();

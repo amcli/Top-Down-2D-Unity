@@ -9,20 +9,26 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class EnemyChase : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
     public GameObject p;
     public Player pl;
+    public FloatingHealthBar healthbar;
+
     private float speed = 4.0f;
     private float distance;
     private float accelTime = 3.5f;
     private float multiplier;
     private float timer = 0f;
 
+    private float maxHP = 100.0f;
+    private float currHP;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        currHP = maxHP;
+        healthbar.SetMaxHealth(maxHP);
     }
 
     // Update is called once per frame
@@ -32,7 +38,7 @@ public class EnemyChase : MonoBehaviour
         Vector2 dir = p.transform.position - transform.position;
         dir.Normalize();
 
-        if(distance < 20)
+        if (distance < 20)
         {
             timer += Time.deltaTime;
             //enemy rotate toward player angle calculation
@@ -47,8 +53,8 @@ public class EnemyChase : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
 
-        else { 
-            timer = 0f; 
+        else {
+            timer = 0f;
             multiplier = 1f;
             Debug.Log(timer);
             Debug.Log(multiplier);
@@ -58,11 +64,30 @@ public class EnemyChase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Collided w/ Player");
             pl.TakeDamage(10);
         }
 
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Debug.Log("Hit by bullet");
+            TakeDamage(10);
+        }
+
+    }
+
+
+
+    public void TakeDamage(float damage)
+    {
+        currHP -= damage;
+        currHP = Mathf.Max(currHP, 0f);
+        healthbar.SetHealth(currHP);
+        if (currHP == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
