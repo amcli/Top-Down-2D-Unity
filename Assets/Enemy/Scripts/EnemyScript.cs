@@ -13,7 +13,6 @@ public class EnemyScript : MonoBehaviour
 {
     public GameObject p;
     public Player pl;
-    public FloatingHealthBar healthbar;
 
     private float speed = 4.0f;
     private float distance;
@@ -28,7 +27,6 @@ public class EnemyScript : MonoBehaviour
     void Awake()
     {
         currHP = maxHP;
-        healthbar.SetMaxHealth(maxHP);
     }
 
     // Update is called once per frame
@@ -84,7 +82,6 @@ public class EnemyScript : MonoBehaviour
     {
         currHP -= damage;
         currHP = Mathf.Max(currHP, 0f);
-        healthbar.SetHealth(currHP);
         if (currHP == 0)
         {
             Destroy(gameObject);
