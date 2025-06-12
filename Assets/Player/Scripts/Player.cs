@@ -156,6 +156,7 @@ public class Player : MonoBehaviour
         if (currHP <=0)
         {
             GetComponent<Player>().enabled = false;
+            movement = Vector2.zero;
             Debug.Log("Died");
         }
 
